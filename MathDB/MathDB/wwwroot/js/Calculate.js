@@ -4,20 +4,22 @@ function Calculate() {
     var SecondInput = parseInt(document.getElementById("Second").value);
     var TotalAmount;
 
-    if (ValidateNumber(FirstInput, SecondInput) && SecondInput != 0) {
+    if (ValidateNumber(FirstInput, SecondInput)) {
         if (FindOperator() == "Add")
             TotalAmount = AddNum(FirstInput, SecondInput);
         else if (FindOperator() == "Multiply")
             TotalAmount = SubNum(FirstInput, SecondInput);
         else if (FindOperator() == "Subtract")
             TotalAmount = MultNum(FirstInput, SecondInput);
-        else {
+        else if (SecondInput != 0 && FindOperator() == "Divide")
             TotalAmount = DivNum(FirstInput, SecondInput);
-        }
-        document.getElementById("total").innerHTML = "Total: " + TotalAmount;
+        else
+            TotalAmount = "Cannot Divide by Zero!"
+
+            document.getElementById("total").innerHTML = "Total: " + TotalAmount;
     }
     else
-        document.getElementById("total").innerHTML = "Only numbers are accepted. Cannot Divide by zero!";
+        document.getElementById("total").innerHTML = "Only numbers are accepted!";
 }
 
 //helper function - determines if the two inputs are numbers
